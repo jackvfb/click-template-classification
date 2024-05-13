@@ -15,6 +15,9 @@ vars:
 clean :
 	rm -f data/temp/* data/processed/* figs/*
 
+data/processed/trainset.tibble : code/getClickData.R $(TRAINSET)
+	$< $@
+
 .PHONY: meanspec
 meanspec : $(MEANSPEC)
 
