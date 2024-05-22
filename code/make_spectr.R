@@ -1,8 +1,11 @@
 #!/usr/bin/env Rscript
 
-library(PAMpal)
+# Make figure with a concatenated spectrogram and mean spectra, side by side.
 
-# Helper plotter function
+suppressPackageStartupMessages(library("PAMpal"))
+args <- commandArgs(T)
+
+# Plotter function
 plotter <- function(study, which_plot) {
   calculateAverageSpectra(study,
                           evNum=1:length(events(study)), plot=which_plot,
@@ -12,9 +15,9 @@ plotter <- function(study, which_plot) {
                           norm=TRUE)
 }
 
-# Make figure with a concatenated spectrogram and mean spectra, side by side.
-study <- readRDS(commandArgs(T)[1])
-png(filename = commandArgs(T)[2], width = 6, height = 4, units = "in", res = 300)
+
+study <- bindStudies(lapply(args[1:(length(args)-1)], readRDS))
+png(filename = args[length(args)], width = 6, height = 4, units = "in", res = 300)
 par(mfrow=c(1,2))
 plotter(study, which_plot = c(TRUE, FALSE))
 plotter(study, which_plot = c(FALSE, TRUE))
