@@ -1,3 +1,0 @@
-training_data :
-    pd : [data/study/Bangarang_Dalls.study, data/study/CalCURSeas_Dalls.study]
-    ks : [data/study/PG2_02_09_CCES_022_Ksp.study, data/study/PG2_02_09_CCES_023_Ksp.study]

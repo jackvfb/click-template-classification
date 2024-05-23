@@ -1,32 +1,47 @@
-configfile: "config.yaml"
-
 # a single database file for an individual drifter deployment
 DB_FILE = 'data/db/{drift}.sqlite3'
 
 # a single AcousticStudy generated from a drift database
 STUDY_FILE = 'data/study/{drift}.study'
 
+# a single AcousticStudy generated from a drift database
+GPS_FILE = 'data/gps/{drift}_GPS.csv'
+
 # Build list of drift names
 DRIFT_NAMES = glob_wildcards(DB_FILE).drift
 
-# A list of all AcoustiStudy names
-ALL_STUDIES = expand(STUDY_FILE, drift=DRIFT_NAMES)
-
 # target rule
-rule studies:
-    input: ALL_STUDIES
+rule all_studies:
+    input:
+        expand(STUDY_FILE, drift=DRIFT_NAMES)
 
 # rule to process a database into an AcousticStudy
 rule make_study:
     input:
-        DB_FILE
+        db = DB_FILE,
+        gps = GPS_FILE,
+        script = "code/test.R" if exists(GPS_FILE) else ["code/make_study.R"]
     output:
         STUDY_FILE
     shell:
-        "code/make_study.R {input} {output}"
+        "{input.script} {input.db} {input.gps} {output}"
+
+# rule make_gps_study:
+#     input:
+#         db = DB_FILE,
+#         gps = GPS_FILE
+#     output:
+#         STUDY_FILE
+#     script: "code/test.R"
 
 # NBHF species identifiers
 ID = ["ks", "pd"]
+
+# Dictionary to lookup which studies are labelled by species
+TRAINSET = {
+    "pd" : ["data/study/Bangarang_Dalls.study", "data/study/CalCURSeas_Dalls.study"],
+    "ks" : ["data/study/PG2_02_09_CCES_022_Ksp.study", "data/study/PG2_02_09_CCES_023_Ksp.study"]
+}
 
 # Single concatenated spectrogram figure
 SP_SPECTR = 'fig/{id}_spectr.png'
@@ -34,18 +49,13 @@ SP_SPECTR = 'fig/{id}_spectr.png'
 # Concatenated spectrograms for all species
 ALL_SPECTR = expand(SP_SPECTR, id=ID)
 
-# Input function that returns the studies associated with each species as given in './config.yaml'
-def get_sp_studies(wildcards) :
-    return config["training_data"][wildcards.id]
-
 rule make_sp_spectr:
     input:
-        get_sp_studies
+        lookup(dpath = '{id}', within = TRAINSET)
     output:
         "fig/{id}_spectr.png"
     shell:
         "code/make_spectr.R {input} {output}"
-
 
 # An AcousticStudy for an individual species
 # rule test:
