@@ -18,21 +18,20 @@ rule all_studies:
 # rule to process a database into an AcousticStudy
 rule make_study:
     input:
-        db = DB_FILE,
-        gps = GPS_FILE,
-        script = "code/test.R" if exists(GPS_FILE) else ["code/make_study.R"]
+        DB_FILE
     output:
         STUDY_FILE
     shell:
-        "{input.script} {input.db} {input.gps} {output}"
+        "code/make_study.R {input} {output}"
 
-# rule make_gps_study:
-#     input:
-#         db = DB_FILE,
-#         gps = GPS_FILE
-#     output:
-#         STUDY_FILE
-#     script: "code/test.R"
+rule add_gps:
+    input:
+        study = STUDY_FILE,
+        gps = GPS_FILE
+    output:
+        'data/study/{drift}.study.gps'
+    shell:
+        "code/add_gps.R {input.study} {input.gps} {output}"
 
 # NBHF species identifiers
 ID = ["ks", "pd"]
