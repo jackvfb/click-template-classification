@@ -1,3 +1,8 @@
 .Rproj.user
 .snakemake/
 .vscode/
+
+# data
+data/*/bins/*/
+data/*/study/
+data/gps/*.csv
