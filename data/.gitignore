@@ -1,1 +1,5 @@
-bins/*/
+# binaries in folders
+*/bins/*/
+
+# gps data
+gps/*.csv
