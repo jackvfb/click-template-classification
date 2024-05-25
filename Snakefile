@@ -1,29 +1,18 @@
-# a single database file for an individual drifter deployment
+# Raw data files
 DB_FILE = 'data/{set}/db/{drift}.sqlite3'
-
-# a single database file for an individual drifter deployment
 BIN_DIR = 'data/{set}/bins/{drift}/'
+GPS_FILE = 'data/gps/{drift}_GPS.csv'
+SP_LOOKUP = 'data/train/sp_lookup.table'
 
-# a single AcousticStudy generated from a drift database
+# Processed data files
+STUDY_TEMP_FILE = 'data/{set}/{drift}.tmp'
 STUDY_FILE = 'data/{set}/study/{drift}.study'
+# STUDY_DAT = 'data/{set}/dat/{drift}.dat'
+# STUDY_DAT_BANT = 'data/{set}/dat/{drift}.dat'
 
-
-# # a single AcousticStudy generated from a drift database
-# GPS_FILE = 'data/gps/{drift}_GPS.csv'
-
-# Build list of drift names
-
+# Drift names
 TRAIN_DRIFTS = glob_wildcards('data/train/db/{drift}.sqlite3').drift
 PREDICT_DRIFTS = glob_wildcards('data/predict/db/{drift}.sqlite3').drift
-
-# DRIFT_NAMES = glob_wildcards(expand(DB_FILE, set=["train", "predict"]).drift)
-
-# print(DRIFT_NAMES)
-
-# # target rule
-# rule all_studies:
-#     input:
-#         expand(STUDY_FILE, drift=DRIFT_NAMES)
 
 # rule to process a database into an AcousticStudy
 rule all_studies:
@@ -31,23 +20,43 @@ rule all_studies:
         expand(STUDY_FILE, set="train", drift=TRAIN_DRIFTS),
         expand(STUDY_FILE, set="predict", drift=PREDICT_DRIFTS),
 
+# rule bants:
+#     input:
+#         "data/bant/train.dat",
+#         "data/bant/predict.dat"
+
+# rule exp_bant:
+#     input:
+#         STUDY_FILE_W_MOD
+#     output:
+#         BANT_DAT
+#     shell:
+#         "code/exp_bant.R {input} {ouput}"
+
 rule make_study:
+    input:
+        branch(
+            exists(GPS_FILE),
+            then=["code/add_gps.R", GPS_FILE],
+            otherwise=["code/set_sp.R"]
+        ),
+        STUDY_TEMP_FILE
+    output:
+        STUDY_FILE
+    shell:
+        "{input} {output}"        
+
+rule process_drift_db:
     input:
         DB_FILE,
         BIN_DIR
     output:
-        STUDY_FILE
+        temp(STUDY_TEMP_FILE)
     shell:
-        "code/make_study.R {input} {output}"
+        "code/process_db.R {input} {output}"
 
-# rule add_gps:
-#     input:
-#         study = STUDY_FILE,
-#         gps = GPS_FILE
-#     output:
-#         'data/study/{drift}.study.gps'
-#     shell:
-#         "code/add_gps.R {input.study} {input.gps} {output}"
+# branch here, assumes that training data does NOT have GPS data, and survey data DOES
+
 
 # # NBHF species identifiers
 # ID = ["ks", "pd"]
