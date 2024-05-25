@@ -21,11 +21,21 @@ events_wo_detectors <- function(study) {
   return(evs)
 }
 
-# Usage: Process a PAMguard database with NBHF click detections, and clean
-# Assumes sample rate is 384 kHz
-maker <- function(db) {
+# Usage:
+# Process a PAMguard database with NBHF click detections
+# 
+# Arguments:
+#    - db: connection to PAMguard database file
+#    - bins: connection to PAMguard binaries file
+#
+# Parameters:
+#    - sample rate is 384 kHz
+#    - high-pass filter = 100 kHz,
+#    - low-pass = 160 kHz
+#    - window length = 0.25 ms
+maker <- function(db, bins) {
   pps <- PAMpalSettings(db = db,
-                        binaries = "data/bins",
+                        binaries = bins,
                         sr_hz = 384000,
                         filterfrom_khz = 100,
                         filterto_khz = 160,
@@ -37,7 +47,8 @@ maker <- function(db) {
   return(study)
 }
 
-study <- maker(commandArgs(T)[1])
+# Process database into AcousticStudy, and clean
+study <- maker(commandArgs(T)[1], commandArgs(T)[2])
 events(study) <- events_wo_dups(study)
 events(study) <- events_wo_detectors(study)
-saveRDS(study, commandArgs(T)[2])
+saveRDS(study, commandArgs(T)[3])
