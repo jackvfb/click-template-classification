@@ -5,4 +5,5 @@
 # data
 data/*/bins/*/
 data/*/study/
+data/*/dat/
 data/gps/*.csv
