@@ -1,5 +1,3 @@
-#!/usr/bin/env Rscript
-
 suppressPackageStartupMessages(library("PAMpal"))
 
 # Returns events with duplicates removed

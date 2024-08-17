@@ -1,5 +1,3 @@
-#!/usr/bin/env Rscript
-
 suppressPackageStartupMessages(library("PAMpal"))
 suppressPackageStartupMessages(library("stringr"))
 

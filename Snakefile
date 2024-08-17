@@ -23,7 +23,7 @@ rule get_dat:
     output:
         DAT_FILE
     shell:
-        "code/write_dat.R {input} {output}"
+        "Rscript --vanilla code/write_dat.R {input} {output}"
 
 # input function needed for the branch() element in the rule 'make_study' below
 def gps_file_exists(wildcards):
@@ -43,7 +43,7 @@ rule make_study:
     output:
         STUDY_FILE
     shell:
-        "{input} {output}"        
+        "Rscript --vanilla {input} {output}"        
 
 # preprocessing step to turn db file into an AcousticStudy
 rule process_drift_db:
@@ -53,7 +53,7 @@ rule process_drift_db:
     output:
         temp(STUDY_TEMP_FILE)
     shell:
-        "code/process_db.R {input} {output}"
+        "Rscript --vanilla code/process_db.R {input} {output}"
 
 # # Single concatenated spectrogram figure
 # SP_SPECTR = 'fig/{id}_spectr.png'
@@ -67,4 +67,4 @@ rule process_drift_db:
 #     output:
 #         "fig/{id}_spectr.png"
 #     shell:
-#         "code/make_spectr.R {input} {output}"
+#         "Rscript --vanilla code/make_spectr.R {input} {output}"

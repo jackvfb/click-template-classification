@@ -1,5 +1,3 @@
-#!/usr/bin/env Rscript
-
 # Make figure with a concatenated spectrogram and mean spectra, side by side.
 
 suppressPackageStartupMessages(library("PAMpal"))
