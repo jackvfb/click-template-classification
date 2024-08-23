@@ -40,13 +40,13 @@ maker <- function(db, bins) {
                         winLen_sec = 0.0025)
   
   study <- processPgDetections(pps = pps,
-                                mode = "db")
+                                mode = "recording")
 
   return(study)
 }
 
 # Process database into AcousticStudy, and clean
 study <- maker(commandArgs(T)[1], commandArgs(T)[2])
-events(study) <- events_wo_dups(study)
-events(study) <- events_wo_detectors(study)
+#events(study) <- events_wo_dups(study)
+#events(study) <- events_wo_detectors(study)
 saveRDS(study, commandArgs(T)[3])

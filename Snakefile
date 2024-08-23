@@ -12,6 +12,10 @@ DAT_FILE = 'data/{set}/dat/{drift}.dat'
 TRAIN_DRIFTS = glob_wildcards('data/train/db/{drift}.sqlite3').drift
 PREDICT_DRIFTS = glob_wildcards('data/predict/db/{drift}.sqlite3').drift
 
+rule clean_dats:
+    shell:
+        "rm data/train/dat/* data/predict/dat/*"
+
 rule all_dats:
     input:
         expand(DAT_FILE, set="train", drift=TRAIN_DRIFTS),
