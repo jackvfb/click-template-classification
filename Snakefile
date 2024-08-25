@@ -8,13 +8,36 @@ STUDY_TEMP_FILE = 'data/{set}/{drift}.tmp'
 STUDY_FILE = 'data/{set}/study/{drift}.study'
 DAT_FILE = 'data/{set}/dat/{drift}.dat'
 
-# Drift names by dataset
+# Drift ID by dataset
 TRAIN_DRIFTS = glob_wildcards('data/train/db/{drift}.sqlite3').drift
 PREDICT_DRIFTS = glob_wildcards('data/predict/db/{drift}.sqlite3').drift
+
+# Training set grouped by species
+GROUPS = {
+    "pd" : ["CalCURSeas_Dalls", "Bangarang_Dalls", "PASCAL_Dalls_TowedArray"],
+    "pp" : ["OPPS_008_Harbor", "OPPS_010_Harbor", "CalCURSeas_Harbor"],
+    "ks" : ["PG2_02_09_CCES_022_Ksp", "PG2_02_09_CCES_023_Ksp"]
+}
+
+def group_studies(wildcards):
+    want = GROUPS[wildcards.species]
+    return expand(STUDY_FILE, set="train", drift=want)
+
+rule make_spec_fig:
+    input:
+        group_studies
+    output:
+        "fig/{species}_spec.png"
+    shell:
+        "Rscript --vanilla code/make_spectr.R {input} {output}"
 
 rule clean_dats:
     shell:
         "rm data/train/dat/* data/predict/dat/*"
+        
+rule clean_figs:
+    shell:
+        "rm fig/*"
 
 rule all_dats:
     input:
@@ -50,6 +73,7 @@ rule make_study:
         "Rscript --vanilla {input} {output}"        
 
 # preprocessing step to turn db file into an AcousticStudy
+
 rule process_drift_db:
     input:
         DB_FILE,
@@ -58,17 +82,3 @@ rule process_drift_db:
         temp(STUDY_TEMP_FILE)
     shell:
         "Rscript --vanilla code/process_db.R {input} {output}"
-
-# # Single concatenated spectrogram figure
-# SP_SPECTR = 'fig/{id}_spectr.png'
-
-# # Concatenated spectrograms for all species
-# ALL_SPECTR = expand(SP_SPECTR, id=ID)
-
-# rule make_sp_spectr:
-#     input:
-#         lookup(dpath = '{id}', within = TRAINSET)
-#     output:
-#         "fig/{id}_spectr.png"
-#     shell:
-#         "Rscript --vanilla code/make_spectr.R {input} {output}"

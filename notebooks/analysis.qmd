@@ -1,0 +1,55 @@
+---
+title: "Comparing Templates"
+author: "Jackson Vanfleet Brown"
+---
+
+```{r}
+library(dplyr)
+library(readr)
+library(purrr)
+library(ggplot2)
+library(tidyr)
+```
+
+## Data prep
+
+```{r}
+
+c <- list_rbind(map(list.files("../data/train/dat",
+                               full.names = T),
+                    read_csv)
+                )
+
+t <- list_rbind(map(list.files("../data/train/template",
+                               full.names = T),
+                    readRDS)
+)
+
+c$UID <- as.character(c$UID)
+t$UID <- as.character(t$UID)
+j <- left_join(c, t, by="UID")
+j <- j[complete.cases(j),]
+j2 <- pivot_longer(j, cols = ends_with("_match"), names_to = "match")
+```
+
+
+```{r}
+# Show the distribution of match scores for each species
+j2 %>%
+  ggplot(aes(x=value, color=match))+
+  geom_freqpoly()+
+  facet_wrap(~species, scales = "free_y")
+
+# Faceted by template ID
+j2 %>%
+  ggplot(aes(x=value, color=species))+
+  geom_freqpoly()+
+  facet_wrap(~match, scales = "free_y")
+```
+
+```{r}
+
+```
+
+
+
