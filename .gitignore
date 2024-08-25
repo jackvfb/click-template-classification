@@ -7,3 +7,7 @@ data/*/bins/*/
 data/*/study/
 data/*/dat/
 data/gps/*.csv
+
+# html dirs
+notebooks/*/
+notebooks/*.html
