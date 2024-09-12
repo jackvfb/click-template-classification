@@ -1,6 +1,8 @@
 ---
 title: "Comparing Templates"
 author: "Jackson Vanfleet Brown"
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r}
@@ -15,12 +17,12 @@ library(tidyr)
 
 ```{r}
 
-c <- list_rbind(map(list.files("../data/train/dat",
+c <- list_rbind(map(list.files("data/train/dat",
                                full.names = T),
                     read_csv)
                 )
 
-t <- list_rbind(map(list.files("../data/train/template",
+t <- list_rbind(map(list.files("data/train/template",
                                full.names = T),
                     readRDS)
 )
@@ -48,7 +50,11 @@ j2 %>%
 ```
 
 ```{r}
-
+j2 %>%
+  filter(species==ksp) %>% 
+  ggplot(aes(noiseLevel, value)) +
+  geom_point() +
+  facet_wrap(~species)
 ```
 
 
