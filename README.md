@@ -6,17 +6,17 @@ The popular bioinformatics tool helped me create a pipeline for my passive acous
 
 My master's thesis was a computational research project using a large dataset of echolocation clicks detected during thousands of hours worth of recording sounds in the marine environment.
 
-The difficulties of dealing with large batches of files which needed to undergo multiple stages of processing was something I struggled with over the course of my project and made me instantly recognize that a tool like Snakemake would bring some great benefits to the project.
+The difficulties of dealing with large batches of files which needed to undergo multiple stages of processing was something I struggled with over the course of my project. Snakemake had the potential to radically streamline and improve this undertaking.
 
-### Pipeline requirements
+## Objectives
 
-The pipeline I wanted to construct had to take the raw data databases from thir perform the following tasks had to take PAMguard databases and associated binary files and process the echolocation click detections in each database into a tidy data that contained all the clicks along with the associated click features, extracted using PAMpal package in R.
+The pipeline I wanted to construct had started with raw data databases and associated binary files and ended with tidy data for each database containing a suite of acoustic features extracted from each and every click contained therein.
 
 There were some extra tidbits:
 
 1)  For databases with available geolocations, I had to perform an extra processing step to link the GPS positions with the acoustic detections.
 
-2)  For databases forming the training set (see below) an extra processing step had to be performed to associated the proper species ID with each detection in the database.
+2)  For databases forming the training set an extra processing step had to be performed to label each detection in the database with the proper species ID with.
 
 This led me to create a branched structure in my pipeline
 
