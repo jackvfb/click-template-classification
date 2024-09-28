@@ -1,10 +1,10 @@
-# Pipeline with Snakemake
+# Thesis Pipeline with Snakemake 🐍
 
-The popular bioinformatics tool helped me create a pipeline for my passive acoustic monitoring data.
+The popular bioinformatics tool helped me create a pipeline for my passive acoustic monitoring data, needed for my master's thesis.
 
 ## Background
 
-My master's thesis was a computational research project using a large dataset of echolocation clicks detected during thousands of hours worth of recording sounds in the marine environment.
+My master's thesis was a computational research project using a large dataset of echolocation clicks detected during thousands of hours worth of recording sounds in the ocean.
 
 The difficulties of dealing with large batches of files which needed to undergo multiple stages of processing was something I struggled with over the course of my project. Snakemake had the potential to radically streamline and improve this undertaking.
 
