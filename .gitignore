@@ -8,6 +8,5 @@ data/*/study/
 data/*/dat/
 data/gps/*.csv
 
-# html dirs
-notebooks/*/
-notebooks/*.html
+data/train/template/
+notebooks/
