@@ -1,4 +1,6 @@
 .Rproj.user
 
 # data
-data/bins/*
+data/*/*
+!data/*/*.sqlite3
+!data/*/*.rds

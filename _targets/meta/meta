@@ -1,0 +1,30 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+clicks_Bangarang_Dalls|stem|597cea157cfeeacf|2191602b62289981|1ac5502092d2fa7d|-1723135928||t19995.3207958589s|4975bff338e52cae|67853|rds|local|vector|||0.02||
+clicks_CalCURSeas_Dalls|stem|ddb8bda3482d5183|d381d3542f95ea80|74466b2333b1a4eb|1039722888||t19995.3231025211s|c105ba09159adc7a|88885|rds|local|vector|||0||
+clicks_CalCURSeas_Harbor|stem|10c627abb6fe6494|42224c512145f9f1|6c8fca6e67ae6395|107236579||t19995.3217641692s|1eafe8c059072df0|329287|rds|local|vector|||0.02||
+clicks_OPPS_008_Harbor|stem|317e206668bec477|7b5905fe4287a039|80147cd8808f9ff1|-349669548||t19995.3230193848s|4250a6e5a8e1d204|2581913|rds|local|vector|||0.02||
+clicks_OPPS_010_Harbor|stem|e3df39e491b4770a|1c864a0980089758|973d5eecbc2758dc|1931476246||t19995.321760607s|db02872f6a3172bb|1595478|rds|local|vector|||0||
+clicks_PASCAL_Dalls_TowedArray|stem|8991fdcc1cf3930a|8c75749d27392d31|e82f032ece4f52e6|807941947||t19995.324463107s|c83782da7be4b5fd|2545176|rds|local|vector|||0.11||
+clicks_PG2_02_09_CCES_022_Ksp|stem|026823d4a18b0351|1da765f85bc315b0|4b6d844a0c8bf22e|-921569192||t19995.3178704568s|8537aadd2043c9ed|144043|rds|local|vector|||0||
+clicks_PG2_02_09_CCES_023_Ksp|stem|74ab056a0e3a2e74|bf9b4c5f9cd0d4b6|8271a0b1aef25d01|594427568||t19995.3244369131s|183ff56458f6674d|361233|rds|local|vector|||0||
+do_join|function|127395c25b759190|||||||||||||||
+events_wo_detectors|function|465dfd900b56de84|||||||||||||||
+events_wo_dups|function|cc86fef97a3d862b|||||||||||||||
+join_Bangarang_Dalls|stem|170f44ccd1358df6|91d3c5675c6126dd|af4a54b5040d6625|-1909504963||t19995.324482329s|a3ff4aa7b22f0175|71198|rds|local|vector|||0||
+join_CalCURSeas_Dalls|stem|88f6d92fcc9f7773|5df4814f6c416791|9681c66a54440ffe|-525229954||t19995.3231037291s|8f7a74e6591a0aa5|206074|rds|local|vector|||0||
+join_CalCURSeas_Harbor|stem|5f825ae8273a45a8|bc6d9236c293fc9f|c3bc4738a8a50182|1825919073||t19995.3244786128s|59cc2a8c8acfb7bb|268918|rds|local|vector|||0||
+join_OPPS_008_Harbor|stem|9c9ebf7409011842|1251f39848dcf4f3|93943020df350031|1755044650||t19995.3244427855s|d612d7eafa266288|1884525|rds|local|vector|||0.02||
+join_OPPS_010_Harbor|stem|cbbf775d6e93796d|01e877fed4ef7be6|1ecfbf6b51061e3c|594479243||t19995.3244812878s|c40e3c59d0ad50c1|1172420|rds|local|vector|||0.01||
+join_PASCAL_Dalls_TowedArray|stem|df0de417881290fd|987cf92dec2cf415|63f4ae3b09bea242|-1405736082||t19995.3244747679s|492f4232fa9dbd39|1738966|rds|local|vector|||0.01||
+join_PG2_02_09_CCES_022_Ksp|stem|677537f1addc033a|74fffd2e0a6647b6|3f9ea60fcf1c17b2|2108006892||t19995.3207375144s|c835cca042fc2520|94171|rds|local|vector|||1.94||
+join_PG2_02_09_CCES_023_Ksp|stem|5ebdf3eab60c2bae|c3ef6aba7e9403e1|32b6513caeb9d7f6|-1582288670||t19995.3244383776s|6d4c75f61a30cc7e|255672|rds|local|vector|||0||
+make_study|function|b4379ff6b288af50|||||||||||||||
+study_Bangarang_Dalls|stem|d8d3d28c4147ed6f|33ca3f75e7f5e5e4|818f60c3637984b5|280512386||t19995.3207926612s|653f12a64864e80d|695187|rds|local|vector|||4.42|No detections in Events PG_500__20150613_162440_758.wav, PG_500__20150613_163853_295.wav, PG_500__20150613_163953_345.wav, PG_500__20150613_164053_395.wav, PG_500__20150613_164153_445.wav, PG_500__20150613_164253_495.wav, ... 58 more not shown|
+study_CalCURSeas_Dalls|stem|9c8b4410ecc69a8a|9081d2967f97a11b|818f60c3637984b5|1242448555||t19995.3230969423s|b2ce604d55976f39|737648|rds|local|vector|||6.06|No detections in Events 1647_20140811_152922.wav, 1647_20140811_153022.wav, 1647_20140811_153122.wav, 1647_20140811_153222.wav, 1647_20140811_153322.wav, 1647_20140811_153422.wav, ... 723 more not shown. Found 5 click detections with NA values.|
+study_CalCURSeas_Harbor|stem|03cc31990d16d468|4657d0792722c813|818f60c3637984b5|-1676860007||t19995.3209733683s|6afdc876a12edaef|983689|rds|local|vector|||14.97|Possible annotation read size error in file CUsersjackvDocumentsclicktemplateclassificationdataCalCURSeas_Harbor20140830Click_Detector_Click_Detector_Clicks_20140830_212129.pgdf. No detections in Events 1647_20140831_001728.wav, 1647_20140831_001828.wav, 1647_20140831_001928.wav, 1647_20140831_002028.wav, 1647_20140831_002128.wav, 1647_20140831_002228.wav, ... 51 more not shown. Found 307 click detections with NA values.|
+study_OPPS_008_Harbor|stem|990a7876e98db7c2|82ed1d3bb8a934cd|818f60c3637984b5|-2086090928||t19995.3230126389s|da38176e6d7e03af|3312756|rds|local|vector|||107.23|Found 52 click detections with NA values.|
+study_OPPS_010_Harbor|stem|d2d0a21848c4795b|34bcb0857e8b9b42|818f60c3637984b5|1679630792||t19995.3217535929s|12bacd313b37e4bb|2248442|rds|local|vector|||66.96|Found 49 click detections with NA values.|
+study_PASCAL_Dalls_TowedArray|stem|8c97f482ae7feae4|aafdd00f30023a6a|818f60c3637984b5|1461161351||t19995.3242611077s|66eafccfd6e8c057|4667475|rds|local|vector|||99.29|No detections in Events PASCAL_20160831_184947_093.wav, PASCAL_20160831_185825_671.wav, PASCAL_20160831_202416_413.wav, PASCAL_20160831_202638_649.wav, PASCAL_20160831_202803_327.wav, PASCAL_20160831_203203_327.wav, ... 84 more not shown. Found 622 click detections with NA values.|
+study_PG2_02_09_CCES_022_Ksp|stem|cb4befbaca04ed42|0088254e2d8798e1|818f60c3637984b5|904937927||t19995.3178668229s|40c7fff6ec0cf050|761185|rds|local|vector|||7.73|No detections in Events 1544081436.181122132349.wav|
+study_PG2_02_09_CCES_023_Ksp|stem|5090e8506ee46e6f|724494366a980fdc|818f60c3637984b5|-947844696||t19995.324426849s|a20dc52072e3a283|990733|rds|local|vector|||13.9|No detections in Events 1208791071.181122075824.wav, 1208791071.181202061324.wav, 1208791071.181202061824.wav, 1208791071.181202062324.wav, 1208791071.181202062824.wav, 1208791071.181202063324.wav, ... 2 more not shown. Found 6 click detections with NA values.|
+values|object|36d73dec3a5faf07|||||||||||||||
